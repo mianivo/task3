@@ -1,3 +1,3 @@
 print('hello world')
-print(12345)
-print(12345)
+print(1234)
+print(1234)
