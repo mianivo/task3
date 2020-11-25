@@ -1,28 +1,32 @@
-from PyQt5 import uic
-from PyQt5.QtWidgets import QWidget, QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
 from PyQt5.QtGui import QPainter, QColor, QBrush, QPen
 
 import sys
-
 import random
+
+
+class Intarface:
+    def __init__(self, window):
+        self.window = window
+        self.push_button = QPushButton(window)
+        window.__setattr__('push_button', self.push_button)
+        window.resize(800, 800)
 
 
 class MyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        Intarface(self)
         self.flag = False
         self.circles = []
 
-        self.pushButton.clicked.connect(self.click)
+        self.push_button.clicked.connect(self.click)
 
     def paintEvent(self, event):
-
         qp = QPainter()
         qp.begin(self)
         self.draw_circle(qp)
         self.flag = False
-
 
     def draw_circle(self, qp):
         for x, y, radius, color in self.circles:
@@ -31,10 +35,8 @@ class MyWindow(QMainWindow):
             qp.drawEllipse(x, y, radius, radius)
         self.update()
 
-
     def get_color(self):
         return QColor(255, 255, 0)
-
 
     def click(self):
         self.circles.append((random.randint(0, self.height()),
