@@ -36,7 +36,7 @@ class MyWindow(QMainWindow):
         self.update()
 
     def get_color(self):
-        return QColor(255, 255, 0)
+        return QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
     def click(self):
         self.circles.append((random.randint(0, self.height()),
